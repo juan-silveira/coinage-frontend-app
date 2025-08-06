@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter } from '@/components/navigation';
+import { useRouter } from '@/i18n/routing';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -21,7 +21,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
         setIsAuthenticated(true);
       } else {
         setIsAuthenticated(false);
-        router.push('/auth/login');
+        router.push('/auth/login', { locale: 'pt-BR' });
       }
       setIsLoading(false);
     };

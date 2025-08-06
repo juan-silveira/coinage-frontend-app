@@ -12,7 +12,7 @@ import { z } from "zod";
 import { cn } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
-import { useRouter } from "@/components/navigation";
+import { useRouter } from "@/i18n/routing";
 
 const schema = z.object({
   email: z.string().email({ message: "Email inválido." }),
@@ -66,7 +66,7 @@ const LoginForm = () => {
           localStorage.setItem('user', JSON.stringify(result.data.user));
           
           toast.success("Login realizado com sucesso!");
-          router.push("/dashboard/analytics");
+          router.push("/", { locale: "pt-BR" });
         } else {
           toast.error(result.message || "Erro no login");
         }

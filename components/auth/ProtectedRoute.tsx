@@ -21,7 +21,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
         setIsAuthenticated(true);
       } else {
         setIsAuthenticated(false);
-        router.push('/auth/login', { locale: 'pt-BR' });
+        router.push('/login');
       }
       setIsLoading(false);
     };

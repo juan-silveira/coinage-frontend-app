@@ -8,14 +8,26 @@ export default async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  const { pathname } = request.nextUrl;
+
+  // Redirecionar rotas limpas para o locale padrão
+  if (pathname === '/') {
+    return NextResponse.redirect(new URL(`/${defaultLocale}`, request.url));
+  }
+
+  if (pathname === '/login') {
+    return NextResponse.redirect(new URL(`/${defaultLocale}/auth/login`, request.url));
+  }
+
   // Step 1: Use the incoming request (example)
   const locale = request.headers.get('dashcode-locale') || defaultLocale;
  
   // Step 2: Create and call the next-intl middleware (example)
   const handleI18nRouting = createMiddleware({
     locales,
-    defaultLocale
-    
+    defaultLocale,
+    // Configurar para não mostrar locale na URL
+    localePrefix: 'never'
   });
   const response = handleI18nRouting(request);
  
@@ -27,5 +39,5 @@ export default async function middleware(request: NextRequest) {
  
 export const config = {
   // Match only internationalized pathnames, exclude API routes
-  matcher: ['/', '/(pt-BR|en|es)/:path*', '/((?!api|_next|_vercel|.*\\..*).*)']
+  matcher: ['/', '/login', '/(pt-BR|en|es)/:path*', '/((?!api|_next|_vercel|.*\\..*).*)']
 };

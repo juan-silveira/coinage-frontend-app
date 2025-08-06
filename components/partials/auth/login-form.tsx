@@ -66,7 +66,7 @@ const LoginForm = () => {
           localStorage.setItem('user', JSON.stringify(result.data.user));
           
           toast.success("Login realizado com sucesso!");
-          router.push("/", { locale: "pt-BR" });
+          router.push("/");
         } else {
           toast.error(result.message || "Erro no login");
         }

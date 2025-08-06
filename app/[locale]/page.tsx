@@ -2,11 +2,9 @@
 
 import { useEffect } from 'react';
 import { useRouter } from '@/i18n/routing';
-import { useLocale } from 'next-intl';
 
 export default function HomePage() {
   const router = useRouter();
-  const locale = useLocale();
 
   useEffect(() => {
     // Verificar se o usuário está autenticado
@@ -15,12 +13,12 @@ export default function HomePage() {
 
     if (token && user) {
       // Se autenticado, redirecionar para a página protegida
-      router.push('/(protected)', { locale });
+      router.push('/(protected)');
     } else {
       // Se não autenticado, redirecionar para login
-      router.push('/auth/login', { locale });
+      router.push('/login');
     }
-  }, [router, locale]);
+  }, [router]);
 
   // Mostrar loading enquanto redireciona
   return (

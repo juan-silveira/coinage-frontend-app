@@ -25,9 +25,7 @@ export default async function middleware(request: NextRequest) {
   // Step 2: Create and call the next-intl middleware (example)
   const handleI18nRouting = createMiddleware({
     locales,
-    defaultLocale,
-    // Configurar para não mostrar locale na URL
-    localePrefix: 'never'
+    defaultLocale
   });
   const response = handleI18nRouting(request);
  
